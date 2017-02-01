@@ -9,6 +9,25 @@ function logCRP() {
   stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
 }
 
+function loadImages() {
+    var images = document.getElementsByTagName("img");
+    for (var n = 0; n < images.length; n++) {
+        images[n].src = images[n].getAttribute('data-src');
+    }
+}
+
 window.addEventListener("load", function(event) {
-  logCRP();
+    logCRP();
+    loadImages();
+
+    (function (w, g) {
+        w['GoogleAnalyticsObject'] = g;
+        w[g] = w[g] || function () { (w[g].q = w[g].q || []).push(arguments) };
+        w[g].l = 1 * new Date();
+    })(window, 'ga');
+    // Optional TODO: replace with your Google Analytics profile ID.
+    ga('create', 'UA-90954736-1', 'auto');
+    ga('send', 'pageview');
 });
+
+
